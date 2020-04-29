@@ -1,32 +1,59 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 
 window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+import VueRouter from "vue-router";
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.use(VueRouter);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+import VueAxios from "vue-axios";
+import axios from 'axios';
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+Vue.use(VueAxios, axios);
 
-const app = new Vue({
-    el: '#app',
+Vue.component('Navbar', require('./components/client/layouts/Navbar.vue').default);
+Vue.component('Hero', require('./components/client/layouts/Hero.vue').default);
+Vue.component('Product', require('./components/client/layouts/Product.vue').default);
+
+import App from './components/App';
+import Admin from './components/admin/Admin.vue';
+import Client from './components/client/Client.vue';
+import About from './components/guest/About';
+import Homepage from "./components/client/main/Homepage";
+
+const routes = [
+    {
+        path: '/',
+        name: 'client',
+        component: Client,
+        children: [
+            {
+                path: '',
+                name: 'homepage',
+                component: Homepage
+            },
+            {
+                path: 'about',
+                name: 'about',
+                component: About
+            }
+        ]
+    },
+    {
+        path: '/admin',
+        name: 'admin',
+        component: Admin
+    }
+];
+
+const router = new VueRouter({
+    mode: 'history',
+    routes : routes
 });
+
+new Vue(Vue.util.extend(
+    {router},
+    App
+)).$mount('#app');
