@@ -28,22 +28,18 @@ class ProducerController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request);
         $this->validate($request, [
-           'name' => 'required' ,
+            'name' => 'required',
             'description' => 'required'
         ]);
 
         if ($request->logo) {
             $name = time() . '.' . explode('/', explode(':', substr($request->logo, 0, strpos($request->logo, ';')))[1])[1];
 
-            Image::make($request->logo)->save(public_path('img/products/') . $name);
+            Image::make($request->logo)->save(public_path('img/producers/') . $name);
+            $request->merge(['logo' => $name]);
         }
-        $producer = Producer::create([
-            'name' => $request->input('name'),
-            'logo' => $request->logo,
-            'description' => $request->input('description')
-        ]);
+        $producer = Producer::create($request->all());
 
         return response([
             'producer' => $producer
@@ -54,7 +50,7 @@ class ProducerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -65,19 +61,37 @@ class ProducerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required'
+        ]);
+        $currentLogo = Producer::where('id', $id)->value('logo');
+
+        if ($request->logo != $currentLogo) {
+            $name = time() . '.' . explode('/',
+                    explode(':', substr($request->logo, 0, strpos($request->logo, ';')))[1])[1];
+
+            Image::make($request->logo)->save(public_path('img/producers/') . $name);
+            $request->merge(['logo' => $name]);
+        }
+        Producer::where('id', $id)->update($request->all());
+
+        return response([
+            'message' => 'Updated Info Successfully!'
+        ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return array
      */
     public function destroy($id)

@@ -7025,6 +7025,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Producer",
   data: function data() {
@@ -7036,8 +7038,7 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         logo: '',
         description: ''
-      }),
-      image: ''
+      })
     };
   },
   methods: {
@@ -7071,31 +7072,18 @@ __webpack_require__.r(__webpack_exports__);
     onImageChange: function onImageChange(e) {
       var _this3 = this;
 
-      var files = e.target.files || e.dataTransfer.files;
-      if (!files.length) return;
-      this.createImage(files[0]);
+      var file = e.target.files[0];
       var reader = new FileReader();
 
-      reader.onload = function (e) {
-        _this3.form.logo = e.target.result;
+      reader.onloadend = function (file) {
+        console.log('RESULT', reader.result);
+        _this3.form.logo = reader.result;
       };
 
       reader.readAsDataURL(file);
-    },
-    createImage: function createImage(file) {
-      var _this4 = this;
-
-      var reader = new FileReader();
-
-      reader.onload = function (e) {
-        _this4.form.logo = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
-      this.form.logo = file;
     },
     createProducer: function createProducer() {
-      var _this5 = this;
+      var _this4 = this;
 
       this.$Progress.start();
       this.form.post('/api/producer').then(function () {
@@ -7106,26 +7094,26 @@ __webpack_require__.r(__webpack_exports__);
           title: 'Producer created in successfully'
         });
 
-        _this5.$Progress.finish();
+        _this4.$Progress.finish();
       })["catch"](function () {});
     },
     updateCategory: function updateCategory() {
-      var _this6 = this;
+      var _this5 = this;
 
       this.$Progress.start();
       this.form.put('/api/producer/' + this.form.id).then(function () {
         $('#addNew').modal('hide');
         swal('Updated!', 'Information has been updated.', 'success');
 
-        _this6.$Progress.finish();
+        _this5.$Progress.finish();
 
         Fire.$emit('AfterCreate');
       })["catch"](function () {
-        _this6.$Progress.fail();
+        _this5.$Progress.fail();
       });
     },
     deleteProducer: function deleteProducer(producerId) {
-      var _this7 = this;
+      var _this6 = this;
 
       swal({
         title: 'Are you sure?',
@@ -7137,7 +7125,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this7.form["delete"]('/api/producer/' + producerId).then(function () {
+          _this6.form["delete"]('/api/producer/' + producerId).then(function () {
             swal('Deleted!', 'Your file has been deleted.', 'success');
             Fire.$emit('AfterCreate');
           })["catch"](function () {
@@ -7148,11 +7136,11 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this8 = this;
+    var _this7 = this;
 
     this.loadProducers();
     Fire.$on('AfterCreate', function () {
-      _this8.loadProducers();
+      _this7.loadProducers();
     });
   }
 });
@@ -70460,7 +70448,15 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(producer.name))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(producer.logo))]),
+                      _c("td", [
+                        _c("img", {
+                          attrs: {
+                            src: "/img/producers/" + producer.logo,
+                            height: "70",
+                            width: "90"
+                          }
+                        })
+                      ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(producer.description))]),
                       _vm._v(" "),
@@ -70484,7 +70480,7 @@ var render = function() {
                           [_c("i", { staticClass: "fa fa-edit blue" })]
                         ),
                         _vm._v(
-                          "\n                                    /\n                                    "
+                          "\n                                /\n                                "
                         ),
                         _c(
                           "a",
@@ -70631,26 +70627,26 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("div", { staticClass: "input-group mb-3" }, [
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "file", name: "file" },
+                          on: { change: _vm.onImageChange }
+                        })
+                      ]),
+                      _vm._v(" "),
                       _vm.form.logo
                         ? _c("div", { staticClass: "col-md-3" }, [
                             _c("img", {
                               staticClass: "img-responsive",
                               attrs: {
-                                src: _vm.form.logo,
+                                src: "/img/producers/" + _vm.form.logo,
                                 height: "70",
                                 width: "90"
                               }
                             })
                           ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "file" },
-                          on: { change: _vm.onImageChange }
-                        })
-                      ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c(
