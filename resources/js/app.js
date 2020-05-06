@@ -58,6 +58,7 @@ import Homepage from "./components/client/main/Homepage";
 import Overview from "./components/admin/main/Overview";
 import Products from "./components/admin/main/Products";
 import Categories from "./components/admin/main/Category";
+import NotFound from "./components/guest/NotFound";
 
 const routes = [
     {
@@ -98,6 +99,10 @@ const routes = [
                 component: Products
             }
         ]
+    },
+    {
+        path: '*',
+        component: NotFound
     }
 ];
 
