@@ -50,37 +50,43 @@
                             </li>
                             <li>
                                 <router-link to="/admin/overview">
-                                    <i class="fa fa-chart-line"></i>
+                                    <i class="fa fa-chart-line blue"></i>
                                     <span>Overview</span>
                                 </router-link>
                             </li>
                             <li>
                                 <router-link to="/admin/categories">
-                                    <i class="fas fa-list-ul"></i>
+                                    <i class="fas fa-list-ul indigo"></i>
                                     <span>Categories</span>
                                 </router-link>
                             </li>
                             <li>
+                                <router-link to="/admin/producers">
+                                    <i class="fab fa-amazon purple"></i>
+                                    <span>Producers</span>
+                                </router-link>
+                            </li>
+                            <li>
                                 <router-link to="/admin/products">
-                                    <i class="fab fa-amazon"></i>
+                                    <i class="fas fa-barcode green"></i>
                                     <span>Products</span>
                                 </router-link>
                             </li>
                             <li>
                                 <router-link to="/admin/profile">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-user orange"></i>
                                     <span>Profile</span>
                                 </router-link>
                             </li>
                             <li>
                                 <router-link to="/admin/orders">
-                                    <i class="fa fa-shopping-cart"></i>
+                                    <i class="fa fa-shopping-cart teal"></i>
                                     <span>Orders</span>
                                 </router-link>
                             </li>
                             <li>
                                 <a href="#">
-                                    <i class="fa fa-power-off"></i>
+                                    <i class="fa fa-power-off red"></i>
                                     <span>Logout</span>
                                 </a>
                             </li>
@@ -111,5 +117,8 @@
 </script>
 
 <style scoped>
-
+    .router-link-exact-active{
+        background-color: #3f51b5;
+        color:#fff !important;
+    }
 </style>

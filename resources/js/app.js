@@ -58,6 +58,7 @@ import Homepage from "./components/client/main/Homepage";
 import Overview from "./components/admin/main/Overview";
 import Products from "./components/admin/main/Products";
 import Categories from "./components/admin/main/Category";
+import Producers from "./components/admin/main/Producer";
 import NotFound from "./components/guest/NotFound";
 
 const routes = [
@@ -92,6 +93,11 @@ const routes = [
                 path: 'categories',
                 name: 'categories',
                 component: Categories
+            },
+            {
+                path: 'producers',
+                name: 'producers',
+                component: Producers
             },
             {
                 path: 'products',

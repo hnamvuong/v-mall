@@ -14,7 +14,7 @@
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
-        "jquery": "^3.2",
+        "jquery": "^3.5.1",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
@@ -25,12 +25,12 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "vue-axios": "^2.1.5",
         "admin-lte": "^3.0.0-alpha.2",
         "laravel-vue-pagination": "^2.1.0",
-        "moment": "^2.22.2",
+        "moment": "^2.25.3",
         "sweetalert2": "^7.26.12",
         "vform": "^1.0.0",
+        "vue-axios": "^2.1.5",
         "vue-progressbar": "^0.7.5",
         "vue-router": "^3.1.6"
     }
