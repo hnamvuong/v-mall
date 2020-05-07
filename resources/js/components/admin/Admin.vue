@@ -20,9 +20,9 @@
                         </div>
                         <div class="user-info">
                             <span class="user-name">
-                                <strong>Name</strong>
+                                <strong>ADMIN</strong>
                             </span>
-                            <span class="user-role">Email</span>
+                            <span class="user-role">hnam.vuong</span>
                             <span class="user-status">
                                 <i class="fas fa-circle green"></i>
                                 <span>Online</span>

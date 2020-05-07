@@ -1,5 +1,5 @@
 <template>
-    <div class="category">
+    <div class="producer">
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="card">
@@ -52,13 +52,13 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" v-show="!editMode">Add New Category</h5>
-                        <h5 class="modal-title" v-show="editMode">Update Category's Info</h5>
+                        <h5 class="modal-title" v-show="!editMode">Add New Producer</h5>
+                        <h5 class="modal-title" v-show="editMode">Update Producer's Info</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form @submit.prevent="editMode ? updateCategory() : createProducer()"
+                    <form @submit.prevent="editMode ? updateProducer() : createProducer()"
                           enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="form-group">
@@ -128,11 +128,11 @@
                 axios.get('/api/producer')
                     .then(({data}) => (this.producers = data))
             },
-            formEdit(category) {
+            formEdit(producer) {
                 this.editMode = true;
                 this.form.reset();
                 $('#addNew').modal('show');
-                this.form.fill(category)
+                this.form.fill(producer)
             },
             onImageChange(e) {
                 let file = e.target.files[0];
@@ -157,7 +157,7 @@
                     }).catch(() => {
                 });
             },
-            updateCategory() {
+            updateProducer() {
                 this.$Progress.start();
                 this.form.put('/api/producer/' + this.form.id)
                     .then(() => {

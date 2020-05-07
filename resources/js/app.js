@@ -56,7 +56,7 @@ import Client from './components/client/Client.vue';
 import About from './components/guest/About';
 import Homepage from "./components/client/main/Homepage";
 import Overview from "./components/admin/main/Overview";
-import Products from "./components/admin/main/Products";
+import Products from "./components/admin/main/Product";
 import Categories from "./components/admin/main/Category";
 import Producers from "./components/admin/main/Producer";
 import NotFound from "./components/guest/NotFound";

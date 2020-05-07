@@ -10,7 +10,7 @@ class Producer extends Model
         'name', 'logo', 'description'
     ];
 
-    public function products()
+    public function product()
     {
         return $this->hasMany('App\Product');
     }

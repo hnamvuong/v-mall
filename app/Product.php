@@ -10,12 +10,12 @@ class Product extends Model
         'name', 'category_id', 'producer_id', 'image', 'description', 'amount', 'price'
     ];
 
-    public function producers()
+    public function producer()
     {
         return $this->belongsTo('App\Producer');
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo('App\Category');
     }
