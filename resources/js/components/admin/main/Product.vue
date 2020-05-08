@@ -84,21 +84,25 @@
                                 <has-error :form="form" field="name"></has-error>
                             </div>
                             <div class="form-group">
-                                <select class="form-control" v-model='form.category_id'>
+                                <select class="form-control" v-model='form.category_id' name="category_id"
+                                        :class="{ 'is-invalid': form.errors.has('name') }">
                                     <option disabled value="">Select Category</option>
                                     <option v-for="(category, index) in categories" :key="index" :value="category.id">
                                         {{category.name}}
                                     </option>
+                                    <has-error :form="form" field="category_id"></has-error>
                                 </select>
                                 <has-error :form="form" field="category_id"></has-error>
                             </div>
                             <div class="form-group">
-                                <select class="form-control" v-model='form.producer_id'>
+                                <select class="form-control" v-model='form.producer_id' name="producer_id"
+                                        :class="{ 'is-invalid': form.errors.has('name') }">
                                     <option disabled value="">Select Producer</option>
                                     <option v-for="(producer, index) in producers" :key="index" :value="producer.id">
                                         {{producer.name}}
                                     </option>
                                 </select>
+                                <has-error :form="form" field="producer_id"></has-error>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="col-md-9">
@@ -110,11 +114,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea v-model="form.description"
-                                          class="form-control"
-                                          :class="{ 'is-invalid': form.errors.has('description') }"
-                                          placeholder="Input Description ...">
-                                </textarea>
+                                <vue-editor v-model="form.description" placeholder="Input Description ..."
+                                            name="description"
+                                            :class="{ 'is-invalid': form.errors.has('name') }"></vue-editor>
+                                <has-error :form="form" field="description"></has-error>
                             </div>
                             <div class="form-group">
                                 <input v-model="form.amount" type="number" name="amount"
@@ -142,8 +145,13 @@
 </template>
 
 <script>
+    import {VueEditor} from "vue2-editor";
+
     export default {
         name: "Product",
+        components: {
+            VueEditor
+        },
         data() {
             return {
                 editMode: false,

@@ -32,6 +32,7 @@
         "vform": "^1.0.0",
         "vue-axios": "^2.1.5",
         "vue-progressbar": "^0.7.5",
-        "vue-router": "^3.1.6"
+        "vue-router": "^3.1.6",
+        "vue2-editor": "^2.10.2"
     }
 }

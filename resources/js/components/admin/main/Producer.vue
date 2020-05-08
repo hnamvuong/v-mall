@@ -77,11 +77,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea v-model="form.description"
-                                          class="form-control"
-                                          :class="{ 'is-invalid': form.errors.has('description') }"
-                                          placeholder="Input Description ...">
-                                </textarea>
+                                <vue-editor v-model="form.description" placeholder="Input Description ..."></vue-editor>
                                 <has-error :form="form" field="description"></has-error>
                             </div>
                         </div>
@@ -98,8 +94,13 @@
 </template>
 
 <script>
+    import { VueEditor } from "vue2-editor";
+
     export default {
         name: "Producer",
+        components: {
+            VueEditor
+        },
         data() {
             return {
                 editMode: false,
