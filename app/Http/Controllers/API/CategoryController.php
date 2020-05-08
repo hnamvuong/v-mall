@@ -18,6 +18,11 @@ class CategoryController extends Controller
         return Category::latest()->paginate(5);
     }
 
+    public function getCategories()
+    {
+        return Category::all();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

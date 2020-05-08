@@ -19,6 +19,11 @@ class ProducerController extends Controller
         return Producer::latest()->paginate(5);
     }
 
+    public function getProducers()
+    {
+        return Producer::all();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

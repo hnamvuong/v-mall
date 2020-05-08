@@ -20,7 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResources([
     'category' => 'Api\CategoryController',
-    'producer' => 'Api\ProducerController'
+    'producer' => 'Api\ProducerController',
+    'product' => 'Api\ProductController'
 ]);
 
-Route::get('producer/upload', 'API\ProducerController@uploadImageProducer');
+Route::get('getCategories', 'API\CategoryController@getCategories');
+Route::get('getProducers', 'API\ProducerController@getProducers');
